@@ -23,6 +23,8 @@
 <link href="<?php echo base_url('metronic/global/plugins/uniform/css/uniform.default.css'); ?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('metronic/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css'); ?>" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
+
+
 <!-- BEGIN THEME STYLES -->
 <link href="<?php echo base_url('metronic/global/css/components-rounded.css'); ?>" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url('metronic/global/css/plugins.css'); ?>" rel="stylesheet" type="text/css"/>

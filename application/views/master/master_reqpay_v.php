@@ -489,6 +489,7 @@
 <?php echo  $this->session->userdata('jquery-uniformJS'); ?>
 <?php echo  $this->session->userdata('bootstrap-switchJS'); ?>
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<?php echo  $this->session->userdata('toastrJS'); ?>
 <?php echo  $this->session->userdata('select2JS'); ?>
 <?php echo  $this->session->userdata('jquery-dataTablesJS'); ?>
 <?php echo  $this->session->userdata('dataTables-bootstrapJS'); ?>
@@ -760,9 +761,10 @@
 	});
 	$( "#id_tglJT" ).focusout(function() {
 		var tgl = $(this).val();
-		//alert(tgl);
-		var vbl= "#id_tglJT";
-		validatedate(tgl,vbl);
+		if(tgl!=''){
+			var vbl= "#id_tglJT";
+			validatedate(tgl,vbl);
+		}
 	});
 	$('#id_dokFPe').change(function () {
 		$('#id_dokFPe').each(function () {
@@ -1022,7 +1024,11 @@
 			success:function (data) {
 				$('#id_ReloadReqpay').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );
+				if(data.act = 1){
+					UIToastr.init("success","Data berhasil disimpan.");
+				}else{
+					UIToastr.init("error","Data gagal disimpan.");
+				}
 			}
 	
 		});
@@ -1039,7 +1045,11 @@
 			success:function (data) {
 				$('#id_ReloadReqpay').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );				
+				if(data.act = 1){
+					UIToastr.init("success","Data berhasil diubah.");
+				}else{
+					UIToastr.init("error","Data gagal diubah.");
+				}				
 			}
 	
 		});
@@ -1057,7 +1067,11 @@
 			success:function (data) {
 				$('#id_ReloadReqpay').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );				
+				if(data.act = 1){
+					UIToastr.init("success","Data berhasil dihapus.");
+				}else{
+					UIToastr.init("error","Data gagal dihapus.");
+				}				
 			}
 	
 		});

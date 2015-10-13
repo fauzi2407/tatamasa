@@ -46,7 +46,7 @@
                                         <a href="#" class="btn btn-success" data-target="#idDivTabelKyw"
                                            id="id_btnModal" data-toggle="modal">
                                             <i class="fa fa-search fa-fw"/></i>
-                                            Lihat data
+                                           
                                         </a>
                                     </span>
                                     </div>
@@ -200,6 +200,7 @@
 <?php echo  $this->session->userdata('jquery-uniformJS'); ?>
 <?php echo  $this->session->userdata('bootstrap-switchJS'); ?>
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<?php echo  $this->session->userdata('toastrJS'); ?>
 <?php echo  $this->session->userdata('select2JS'); ?>
 <?php echo  $this->session->userdata('jquery-dataTablesJS'); ?>
 <?php echo  $this->session->userdata('dataTables-bootstrapJS'); ?>
@@ -367,7 +368,7 @@
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );
+				UIToastr.init(data.tipePesan,data.pesan);
 			}
 	
 		});
@@ -384,7 +385,7 @@
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );				
+				UIToastr.init(data.tipePesan,data.pesan);		
 			}
 	
 		});
@@ -402,7 +403,7 @@
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );				
+				UIToastr.init(data.tipePesan,data.pesan);			
 			}
 	
 		});

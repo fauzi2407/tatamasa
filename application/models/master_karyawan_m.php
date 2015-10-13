@@ -62,6 +62,36 @@ class Master_karyawan_m extends CI_Model {
 			return true;
 		}
 	}
+	public function cekMasterAdvance($kywId){
+		$sql= "select id_kyw from master_advance where id_kyw = '$kywId'";
+		$query = $this->db->query($sql);
+		$jml = $query->num_rows();
+		if($jml == 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function cekMasterReqpay($kywId){
+		$sql= "select id_kyw from master_reqpay where id_kyw = '$kywId'";
+		$query = $this->db->query($sql);
+		$jml = $query->num_rows();
+		if($jml == 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function cekMasterReimpay($kywId){
+		$sql= "select id_kyw from master_reimpay where id_kyw = '$kywId'";
+		$query = $this->db->query($sql);
+		$jml = $query->num_rows();
+		if($jml == 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	function deleteKyw($kywId){
 		$this->db->trans_begin();
 		$query1	=	$this->db->where('id_kyw',$kywId);

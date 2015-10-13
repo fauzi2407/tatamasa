@@ -176,16 +176,18 @@ class Master_reqpay extends CI_Controller
         );
         $model = $this->master_reqpay_m->insertReqpay($data);
         if($model){
-        	$array = array(
-        			'act'	=>1,
-        			'notif' =>'<div class="Metronic-alerts alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data berhasil disimpan.</div>'
-        	);
-        }else{
-        	$array = array(
-        			'act'	=>0,
-        			'notif' =>'<div class="Metronic-alerts alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data gagal disimpan.</div>'
-        	);
-        }
+    		$array = array(
+    			'act'	=>1,
+    			'tipePesan'=>'success',
+    			'pesan' =>'Data berhasil disimpan.'
+    		);
+    	}else{
+    		$array = array(
+    			'act'	=>0,
+    			'tipePesan'=>'error',
+    			'pesan' =>'Data gagal disimpan.'
+    		);
+    	}
         $this->output->set_output(json_encode($array));
     }
     function ubah(){
@@ -231,13 +233,15 @@ class Master_reqpay extends CI_Controller
     	$model = $this->master_reqpay_m->updateReqpay($data,$idReqpay);
     	if($model){
     		$array = array(
-    				'act'	=>1,
-    				'notif' =>'<div class="Metronic-alerts alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data berhasil diubah.</div>'
+    			'act'	=>1,
+    			'tipePesan'=>'success',
+    			'pesan' =>'Data berhasil diubah.'
     		);
     	}else{
     		$array = array(
-    				'act'	=>0,
-    				'notif' =>'<div class="Metronic-alerts alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data gagal diubah.</div>'
+    			'act'	=>0,
+    			'tipePesan'=>'error',
+    			'pesan' =>'Data gagal diubah.'
     		);
     	}
     	$this->output->set_output(json_encode($array));
@@ -248,13 +252,15 @@ class Master_reqpay extends CI_Controller
     	$model = $this->master_reqpay_m->deleteReqpay( $idReqpay);
     	if($model){
     		$array = array(
-    				'act'	=>1,
-    				'notif' =>'<div class="Metronic-alerts alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data berhasil dihapus.</div>'
+    			'act'	=>1,
+    			'tipePesan'=>'success',
+    			'pesan' =>'Data berhasil dihapus.'
     		);
     	}else{
     		$array = array(
-    				'act'	=>0,
-    				'notif' =>'<div class="Metronic-alerts alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data gagal dihapus.</div>'
+    			'act'	=>0,
+    			'tipePesan'=>'error',
+    			'pesan' =>'Data gagal dihapus.'
     		);
     	}
     	$this->output->set_output(json_encode($array));

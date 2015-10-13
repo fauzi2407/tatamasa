@@ -36,6 +36,39 @@ function ajaxModal(){
         $('.modal_json').fadeOut('fast');
     });
 }
+var UIToastr = function () {
+    return {
+        //main function to initiate the module
+        init: function (tipeAlert,pesan) {
+             var i = -1,
+                toastCount = 0
+
+                var shortCutFunction = tipeAlert;//"success";
+                var msg = pesan;//"Data berhasil disimpan.";
+                var title = 'Notifikasi';
+                var $showDuration = 500;
+                var $hideDuration = 500;
+                var $timeOut = 3000;
+                var $extendedTimeOut = 1000;
+                var $showEasing = "swing";
+                var $hideEasing = "linear";
+                var $showMethod = "fadeIn";
+                var $hideMethod = "fadeOut";
+                var toastIndex = toastCount++;
+
+                toastr.options = {
+                    closeButton: "checked",
+                    debug: "checked",
+                    positionClass: 'toast-top-right',
+                    onclick: null
+                };         
+                 var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+
+        }
+
+    };
+
+}();
 function validatedate(inputText,vbl) {  
 	var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;  
 	// Match the date format through regular expression  

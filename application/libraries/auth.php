@@ -49,6 +49,7 @@ class Auth{
          		'jquery-cokieJS'  => '<script src="'.base_url('metronic/global/plugins/jquery.cokie.min.js').'"></script>',
          		'jquery-uniformJS'  => '<script src="'.base_url('metronic/global/plugins/uniform/jquery.uniform.min.js').'"></script>',
          		'bootstrap-switchJS'  => '<script src="'.base_url('metronic/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js').'"></script>',
+         		'toastrJS'  => '<script src="'.base_url('metronic/global/plugins/bootstrap-toastr/toastr.min.js').'"></script>',
          		'select2JS'  => '<script src="'.base_url('metronic/global/plugins/select2/select2.min.js').'"></script>',
          		'jquery-dataTablesJS'  => '<script src="'.base_url('metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js').'"></script>',
          		'dataTables-bootstrapJS'  => '<script src="'.base_url('metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js').'"></script>',

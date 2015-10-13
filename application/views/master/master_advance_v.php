@@ -148,10 +148,10 @@
 									<div class="checkbox-list">
 										<label>
 										<input type="checkbox"  value="1"  name="dokPO" id="id_dokPO"> Purchase Order (PO)  </label>
-										<input type="text" name="dokPO_in" id="id_dokPO_in" class="nomor1 ">
+										<input type="text" name="dokPO_in" id="id_dokPO_in" class="nomor1 hidden ">
 										<label>
 										<input type="checkbox"  value="1" name="dokSP" id="id_dokSP">  Surat Penawaran </label>
-										<input type="text" name="dokSP_in" id="id_dokSP_in" class="nomor1 ">
+										<input type="text" name="dokSP_in" id="id_dokSP_in" class="nomor1 hidden ">
 									</div>
 								</div>
                             </div>
@@ -161,10 +161,10 @@
 									<div class="checkbox-list">
 										<label>
 										<input type="checkbox"  value="1" name="dokSSP" id="id_dokSSP">  Sesuai Surat Perjanjian / Kontrak  </label>
-										<input type="text" name="dokSSP_in" id="id_dokSSP_in" class="nomor1 ">
+										<input type="text" name="dokSSP_in" id="id_dokSSP_in" class="nomor1 hidden ">
 										<label>
 										<input type="checkbox"  value="1" name="dokSSPK" id="id_dokSSPK">   Sesuai Surat Perintah Kerja (SPK) </label>
-										<input type="text" name="dokSSPK_in" id="id_dokSSPK_in" class="nomor1 ">
+										<input type="text" name="dokSSPK_in" id="id_dokSSPK_in" class="nomor1 hidden ">
 									</div>
 								</div>
                             </div>
@@ -174,7 +174,7 @@
 									<div class="checkbox-list">
 										<label>
 										<input type="checkbox"  value="1" name="dokSBJ" id="id_dokSBJ">   Sesuai Bank Garansi / Surat Jaminan  </label>
-										<input type="text" name="dokSBJ_in" id="id_dokSBJ_in" class="nomor1 ">
+										<input type="text" name="dokSBJ_in" id="id_dokSBJ_in" class="nomor1 hidden ">
 									</div>
 								</div>
                             </div>	
@@ -295,7 +295,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-actions">
-                            	
                                 <button name="btnSimpan" class="btn blue" id="id_btnSimpan">
                                     <!--<i class="fa fa-check"></i>--> Simpan
                                 </button>
@@ -467,6 +466,7 @@
 <?php echo  $this->session->userdata('jquery-uniformJS'); ?>
 <?php echo  $this->session->userdata('bootstrap-switchJS'); ?>
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<?php echo  $this->session->userdata('toastrJS'); ?>
 <?php echo  $this->session->userdata('select2JS'); ?>
 <?php echo  $this->session->userdata('jquery-dataTablesJS'); ?>
 <?php echo  $this->session->userdata('dataTables-bootstrapJS'); ?>
@@ -483,6 +483,7 @@
         Demo.init(); // init demo features
         //UITree.init();
         TableManaged.init();
+        //UIToastr.init();
     });
     //$(function () {
     var judul_menu = $('#id_a_menu_<?php echo $menu_id; ?>').text();
@@ -578,15 +579,9 @@
                 $('#id_kywId').val(idKyw);
                 $('#id_namaKyw').val(namaKyw);
                 $('#id_deptKyw').val(deptKyw);
-                
                 //$('#').val();
-                
                 $('#btnCloseModalDataKyw').trigger('click');
-                /* $('#id_btnSimpan').attr('disabled',true);
-                $('#id_btnUbah').attr("disabled",false);
-                $('#id_btnHapus').attr("disabled",false);
-                $('#id_userId').focus(); */
-
+                
             }); 
 
             tableWrapper.find('.dataTables_length select').addClass("form-control input-xsmall input-inline"); // modify table per page dropdown
@@ -696,6 +691,7 @@
             }
         };
     }();
+    
     //Ready Doc
     btnStart();
     readyToStart();
@@ -882,7 +878,7 @@
 				$('#id_btnBatal').trigger('click');
 				readyToStart();
 				startCheckBox()
-				$( "#event_result" ).append( data.notif );
+				UIToastr.init(data.tipePesan,data.pesan);
 			}
 	
 		});
@@ -899,7 +895,7 @@
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );				
+				UIToastr.init(data.tipePesan,data.pesan);
 			}
 	
 		});
@@ -917,7 +913,7 @@
 			success:function (data) {
 				$('#id_Reload').trigger('click');
 				$('#id_btnBatal').trigger('click');
-				$( "#event_result" ).append( data.notif );				
+				UIToastr.init(data.tipePesan,data.pesan);				
 			}
 	
 		});

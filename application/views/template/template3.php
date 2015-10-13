@@ -27,6 +27,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('metronic/global/plugins/select2/select2.css'); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('metronic/global/plugins/bootstrap-datepicker/css/datepicker3.css'); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('metronic/global/plugins/bootstrap-toastr/toastr.min.css'); ?>"/>
 <!-- END PAGE LEVEL STYLES -->
 
 <!-- BEGIN THEME STYLES -->
