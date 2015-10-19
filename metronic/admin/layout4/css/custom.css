@@ -17,3 +17,12 @@ Rounded Portlets
 	border-radius: 0px 0px 4px 4px !important;
 }
 */
+.modal {
+z-index: 11000;
+}
+.page-portlet-fullscreen {
+z-index: 10080;
+}
+.page-portlet-fullscreen {
+z-index: 10079;
+}

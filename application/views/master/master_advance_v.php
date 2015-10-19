@@ -14,12 +14,23 @@
                     <i class="fa fa-cogs  font-red-sunglo"></i>
                     <span class="caption-subject font-red-sunglo bold uppercase">Data Master Advance Payment</span>
                 </div>
-                <div class="tools">
+                <div class="actions">
+					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
+					<i class="fa fa-print"></i> Cetak </a>
+					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
+					</a>
+				</div>
+                
+                <!-- <div class="actions">
+                	<a href="javascript:;" class="btn blue btn-sm">
+						<i class="fa fa-print"></i> Cetak  </a>
+                </div> -->
+                <!-- <div class="tools">
                     <a href="javascript:;" class="collapse">
                     </a>
                     <a href="javascript:;" class="fullscreen">
                     </a>
-                </div>
+                </div> -->
             </div>
             <div class="portlet-body">
                 <div>
@@ -800,6 +811,11 @@
             } 
 	    });
 	});
+	function cetak(){
+		//window.location.href = 'http://www.google.com';
+		var idAdvance	= $('#id_idAdvance').val();
+		window.open("<?php echo base_url('master_advance/cetak/'); ?>/"+idAdvance, '_blank');
+	}
 	function getDescAdv(idAdv){
 		ajaxModal();
 		if (idAdv != '') {
