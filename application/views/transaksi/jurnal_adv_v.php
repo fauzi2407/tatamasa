@@ -12,7 +12,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cogs  font-red-sunglo"></i>
-                    <span class="caption-subject font-red-sunglo bold uppercase">Data Master Advance Payment</span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">Jurnal Transaksi Advance</span>
                 </div>
                 <div class="actions">
 					<a href="javascript:;" class="btn btn-default btn-sm" onclick="cetak();">
@@ -44,7 +44,24 @@
                         <div class="form-body">
                             <div class="col-md-4">
 								<div class="form-group">
-                                    <label>Id Advance </label>
+                                    <label>No Jurnal Advance </label>
+                                    <div class="input-group">
+                                        <div class="input-icon">
+                                            <i class="fa fa-list fa-fw"></i>
+                                            <input id="id_idJAdvance" required="required" class="form-control"
+                                                   type="text" name="idJAdvance" readonly/>
+                                        </div>
+                                    <span class="input-group-btn">
+                                        <a href="#" class="btn btn-success" data-target="#idDivTabelJAdv"
+                                           id="id_btnModal" data-toggle="modal">
+                                            <i class="fa fa-search fa-fw"/></i>
+                                            
+                                        </a>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>No Advance </label>
                                     <div class="input-group">
                                         <div class="input-icon">
                                             <i class="fa fa-list fa-fw"></i>
@@ -64,33 +81,35 @@
                                 <input id="id_kywId" required="required" class="form-control hidden"
                                                    type="text" name="kywId" readonly/>
                                     <label>Nama karyawan (Requester) </label>
-                                    <div class="input-group">
-                                        <div class="input-icon">
-                                            <i class="fa fa-list fa-fw"></i>
                                             <input id="id_namaKyw" required="required" class="form-control"
                                                    type="text" name="namaKyw" readonly/>
-                                        </div>
-                                    <span class="input-group-btn">
-                                        <a href="#" class="btn btn-success" data-target="#idDivTabelKyw"
-                                           id="id_btnModal" data-toggle="modal">
-                                            <i class="fa fa-search fa-fw"/></i>
-                                            
-                                        </a>
-                                    </span>
-                                    </div>
+                                        
                                 </div>
                                 <div class="form-group">
                                     <label>Departemen/Bagian</label>
 									<input id="id_deptKyw" required="required" class="form-control"
                                                    type="text" name="deptKyw" readonly/>
-                                    <?php
-										/* $data = array();
-										$data[''] ='';
-										foreach($dept as $row) : 
-												$data[$row['id_dept']] = $row['nama_dept'];
-										endforeach; 
-										echo form_dropdown('deptKyw', $data,'','id="id_deptKyw" class="form-control" readonly="readonly"'); */
-									?>
+                                </div>
+                                <div class="form-group">
+                                	<div class="row">
+                                		<div class="col-md-6">
+                                		<label>Tanggal Jurnal</label>
+                                			<input id="id_tgltrans" required="required" class="form-control "
+                                                   type="text" name="tglTrans" readonly/>
+                                		</div>
+                                		<div class="col-md-6">
+                                			<label>Tanggal Advance</label>
+                                            <input id="id_tglAdv" required="required" class="form-control"
+                                                   type="text" name="tglAdv" readonly/>
+                                		</div>
+                            			
+									</div>      
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Dibayarkan ke</label>
+                                            <input id="id_payTo" required="required" class="form-control"
+                                                   type="text" name="payTo" />
                                 </div>
                                 
                             </div>
@@ -101,26 +120,7 @@
                                             <input id="id_uangMuka" required="required" class="form-control nomor"
                                                    type="text" name="uangMuka"/>
                                 </div>
-                                <div class="form-group">
-                                	<div class="row">
-                                		<div class="col-md-6">
-                                		<label>Tanggal Pengajuan</label>
-                                			<input id="id_tgltrans" required="required" class="form-control "
-                                                   type="text" name="tglTrans" readonly/>
-                                		</div>
-                                		<div class="col-md-6">
-                                			<label>Tanggal Jatuh Tempo</label>
-                                            <input id="id_tglJT" required="required" class="form-control"
-                                                   type="text" name="tglJT" placeholder="dd-mm-yyyy"/>
-                                		</div>
-                            			
-									</div>      
-                                </div>
-                                <div class="form-group">
-                                    <label>Dibayarkan ke</label>
-                                            <input id="id_payTo" required="required" class="form-control"
-                                                   type="text" name="payTo" />
-                                </div>
+                                
                             </div>
                             <div class="col-md-4">
                             	<div class="form-group">
@@ -160,158 +160,10 @@
                     </div>    
                     <!--END ROW 2 -->
                     <!-- ROW 3 -->
-                    <div class="row">
-                        <div class="form-body">
-                        	<div class="col-md-4">
-                                <div class="form-group">
-									<label>Dokumen Verifikasi</label>
-									<div class="checkbox-list">
-										<label>
-										<input type="checkbox"  value="1"  name="dokPO" id="id_dokPO"> Purchase Order (PO)  </label>
-										<input type="text" name="dokPO_in" id="id_dokPO_in" class="nomor1 hidden ">
-										<label>
-										<input type="checkbox"  value="1" name="dokSP" id="id_dokSP">  Surat Penawaran </label>
-										<input type="text" name="dokSP_in" id="id_dokSP_in" class="nomor1 hidden ">
-									</div>
-								</div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-									<label>&nbsp;</label>
-									<div class="checkbox-list">
-										<label>
-										<input type="checkbox"  value="1" name="dokSSP" id="id_dokSSP">  Sesuai Surat Perjanjian / Kontrak  </label>
-										<input type="text" name="dokSSP_in" id="id_dokSSP_in" class="nomor1 hidden ">
-										<label>
-										<input type="checkbox"  value="1" name="dokSSPK" id="id_dokSSPK">   Sesuai Surat Perintah Kerja (SPK) </label>
-										<input type="text" name="dokSSPK_in" id="id_dokSSPK_in" class="nomor1 hidden ">
-									</div>
-								</div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-									<label>&nbsp;</label>
-									<div class="checkbox-list">
-										<label>
-										<input type="checkbox"  value="1" name="dokSBJ" id="id_dokSBJ">   Sesuai Bank Garansi / Surat Jaminan  </label>
-										<input type="text" name="dokSBJ_in" id="id_dokSBJ_in" class="nomor1 hidden ">
-									</div>
-								</div>
-                            </div>	
-                        </div>
-                    </div>    
+                       
                     <!--END ROW 3 -->
-                    <div class="row">
-                    	<div class="col-md-12">
-                    		<label><strong>Aproval Dept Keuangan</strong></label>
-                    	</div>
-                    </div>
-                    <div class="row">
-                        <div class="form-body">
-					    	<div class="col-md-3">
-								<div class="form-group">
-					            	<label>Approval</label>
-					                <input id="id_appKeuanganId" class="form-control "
-					                type="text" name="appKeuanganId" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-2">
-					        	<div class="form-group">
-					            	<label>Status</label>
-					                <input id="id_appKeuanganStatus" class="form-control "
-					                type="text" name="appKeuanganStatus" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-2">
-					      		<div class="form-group">
-					            	<label>Tanggal</label>
-					                <input id="id_appKeuanganTgl" class="form-control "
-					                type="text" name="appKeuanganTgl" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-5">
-					        	<div class="form-group">
-					            	<label>Keterangan</label>
-					                <textarea rows="2" cols="" name="appKeuanganKet" id="id_appKeuanganKet" class="form-control" readonly>
-                                    </textarea>        
-					            </div>
-					        </div>
-					   </div>
-                    </div>
-                    <div class="row">
-                    	<div class="col-md-12">
-                    		<label><strong>Approval Head Dept.</strong></label>
-                    	</div>
-                    </div>
-                    <div class="row">
-                    	<div class="form-body">
-							<div class="col-md-3">
-					        	<div class="form-group">
-					            	<label>Approval</label>
-					                <input id="id_appHDId" class="form-control "
-					                type="text" name="appHDId" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-2">
-					        	<div class="form-group">
-					        		<label>Status</label>
-					            	<input id="id_appHDStatus" class="form-control "
-					            	type="text" name="appHDStatus" readonly/>
-					        	</div>
-					    	</div>
-					        <div class="col-md-2">
-					            <div class="form-group">
-					                <label>Tanggal</label>
-					                <input id="id_appHDTgl" class="form-control "
-					                type="text" name="appHDTgl" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-5">
-					        	<div class="form-group">
-					            	<label>Keterangan</label>
-					                <textarea rows="2" cols="" name="appHDKet" id="id_appHDKet" class="form-control" readonly>
-                                    </textarea>        
-					            </div>
-					        </div>
-						</div>
-                    </div>
-                    <div class="row">
-                    	<div class="col-md-12">
-                    		<label><strong>Approval General Manager</strong></label>
-                    	</div>
-                    </div>
-                    <div class="row">
-                    	<div class="form-body">
-							<div class="col-md-3">
-					        	<div class="form-group">
-					            	<label>Approval</label>
-					                <input id="id_appGMId" class="form-control "
-					                type="text" name="appGMId" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-2">
-					        	<div class="form-group">
-					            	<label>Status</label>
-					                <input id="id_appGMStatus" class="form-control "
-					                type="text" name="appGMStatus" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-2">
-					        	<div class="form-group">
-					            	<label>Tanggal</label>
-					                <input id="id_appGMTgl" class="form-control "
-					                type="text" name="appGMTgl" readonly/>
-					            </div>
-					        </div>
-					        <div class="col-md-5">
-					        	<div class="form-group">
-					            	<label>Keterangan</label>
-					                <textarea rows="2" cols="" name="appGMKet" id="id_appGMKet" class="form-control" readonly>
-                                    </textarea>        
-					            </div>
-					        </div>
-						</div>
-                    </div>
+                    
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-actions">
@@ -715,7 +567,6 @@
     //Ready Doc
     btnStart();
     readyToStart();
-    tglTransStart();
 	$("#id_namaKyw").focus();
     	
 	$( "#id_btnSimpan" ).click(function() {
@@ -733,7 +584,6 @@
 		startCheckBox();
 		resetForm();
 		readyToStart();
-		tglTransStart();
 	});
 	$( "#id_idAdvance" ).focusout(function() {
 		var idAdv	= $(this).val();
@@ -839,7 +689,6 @@
 					$('#id_namaKyw').val(data.nama_kyw);
 					$('#id_deptKyw').val(data.nama_dept);
 					$('#id_uangMuka').val(data.jml_uang);
-					$('#id_tgltrans').val(data.tgl_trans);
 					$('#id_tglJT').val(data.tgl_jt);
 					$('#id_payTo').val(data.pay_to);
 					$('#id_namaPemilikAkunBank').val(data.nama_akun_bank);

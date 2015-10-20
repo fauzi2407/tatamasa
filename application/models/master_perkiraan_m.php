@@ -115,6 +115,18 @@ class Master_perkiraan_m extends CI_Model {
 			return true;
 		}
 	}
+	function updatekodeinduk(){
+		//substr($kdPerk,0,-2);
+		$sql1 = "select kode_perk from perkiraan";
+		$query=$this->db->query($sql1);
+		foreach ($query->result() as $row){
+			$kdPerk = $row->kode_perk;
+			$kode_induk = substr($kdPerk,0,-2);
+			$sql="update perkiraan set kode_induk = '$kode_induk' where kode_perk ='$kdPerk'";
+			$this->db->query($sql);
+		}
+		
+	}
 	
 }
 

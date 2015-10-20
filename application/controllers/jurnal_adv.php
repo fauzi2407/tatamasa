@@ -1,7 +1,7 @@
 <?php
 if( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Master_advance extends CI_Controller
+class Jurnal_adv extends CI_Controller
 {
 	function __construct()
 	{
@@ -9,6 +9,7 @@ class Master_advance extends CI_Controller
 
 		$this->load->model('home_m');
 		$this->load->model('master_advance_m');
+		$this->load->model('jurnal_adv_m');
 		session_start ();
 	}
 	public function index(){
@@ -24,7 +25,7 @@ class Master_advance extends CI_Controller
 	}
 	
 	function home(){
-		$menuId = $this->home_m->get_menu_id('master_advance/home');
+		$menuId = $this->home_m->get_menu_id('jurnal_adv/home');
 		$data['menu_id'] = $menuId[0]->menu_id;
 		$data['menu_parent'] = $menuId[0]->parent;
 		$data['menu_nama'] = $menuId[0]->menu_nama;
@@ -43,24 +44,10 @@ class Master_advance extends CI_Controller
 			$data['menu_all'] = $this->user_m->get_menu_all(0);
 			
 			$this->template->set ( 'title', $data['menu_nama'] );
-			$this->template->load ( 'template/template3', 'master/master_advance_v',$data );
+			$this->template->load ( 'template/template3', 'transaksi/jurnal_adv_v',$data );
 		}
 	}
-	public function getKywAll(){
-		$this->CI =& get_instance();//and a.kcab_id<>'1100'
-		$rows = $this->master_advance_m->getKywAll();
-		$data['data'] = array();
-		foreach( $rows as $row ) {
-			$array = array(
-					'idKyw' => trim($row->id_kyw),
-					'namaKyw' => trim($row->nama_kyw),
-					'deptKyw' =>  trim($row->nama_dept)
-			);
 	
-			array_push($data['data'],$array);
-		}
-		$this->output->set_output(json_encode($data));
-	}
 	public function getAdvAll(){
 		$this->CI =& get_instance();//and a.kcab_id<>'1100'
 		$rows = $this->master_advance_m->getAdvAll();
@@ -84,7 +71,6 @@ class Master_advance extends CI_Controller
 		if($rows){
 			foreach ( $rows as $row )
 				$tgl_jt = date ( 'd-m-Y', strtotime ( $row->tgl_jt ) );
-				$tglTrans = date ( 'd-m-Y', strtotime ( $row->tgl_trans ) );
 				$jml_uang = number_format($row->jml_uang,2);
 				$array = array (
 						'baris'=>1,
@@ -92,7 +78,6 @@ class Master_advance extends CI_Controller
 						'nama_kyw'=>$row->nama_kyw,
 						'nama_dept'=>$row->nama_dept,
 						'jml_uang' => $jml_uang,
-						'tgl_trans'	=>$tglTrans,
 						'tgl_jt' => $tgl_jt,
 						'pay_to' => $row->pay_to,
 						'nama_akun_bank' => $row->nama_akun_bank,
@@ -129,8 +114,6 @@ class Master_advance extends CI_Controller
     function simpan(){
         $idKyw			= trim($this->input->post('kywId'));
         $uangMuka		= str_replace(',', '', trim($this->input->post('uangMuka')));
-        $tglTrans			= trim($this->input->post('tglTrans'));
-        $tglTrans 			= date ( 'Y-m-d', strtotime ( $tglTrans ) );
         $tglJT			= trim($this->input->post('tglJT'));
         $tglJT 			= date ( 'Y-m-d', strtotime ( $tglJT ) );
         $payTo			= trim($this->input->post('payTo'));
@@ -150,7 +133,6 @@ class Master_advance extends CI_Controller
             'id_advance'		      	=>$modelidAdv,
             'id_kyw'		        	=>$idKyw,
             'jml_uang'		        	=>$uangMuka,
-        	'tgl_trans'		        	=>$tglTrans,
         	'tgl_jt'		        	=>$tglJT,
         	'pay_to'		        	=>$payTo,
         	'nama_akun_bank'		    =>$namaPemilikAkunBank,

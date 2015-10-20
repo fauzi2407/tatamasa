@@ -289,7 +289,7 @@
 					<li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<i class="icon-calendar"></i>
-						<span class="badge badge-primary">
+						<span class="badge badge-primary" id="id_sessTgltrans">
 						<?php echo $this->session->userdata('tgl_d'); ?> </span>
 						</a>
 						<ul class="dropdown-menu extended tasks">

@@ -203,6 +203,9 @@ class Master_perkiraan extends CI_Controller
     	
     	$this->output->set_output(json_encode($array));
     }
+    function updatekodeinduk(){
+    	$this->master_perkiraan_m->updatekodeinduk();
+    }
 }
 
 /* End of file sec_user.php */
