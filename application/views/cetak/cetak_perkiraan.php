@@ -58,22 +58,7 @@
 		<?php foreach($perkiraan as $p){ ?>
 			<tr>
 				<td><?php 
-				if($p->level == 1){
-					echo $p->kode_perk;
-				}elseif($p->level == 2){
-					echo '&nbsp;'.$p->kode_perk;
-				}elseif($p->level == 3){
-					echo '&nbsp;&nbsp;'.$p->kode_perk;
-				}elseif($p->level == 4){
-					echo '&nbsp;&nbsp;&nbsp;'.$p->kode_perk;
-				}elseif($p->level == 5){
-					echo '&nbsp;&nbsp;&nbsp;&nbsp;'.$p->kode_perk;
-				}elseif($p->level == 6){
-					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$p->kode_perk;
-				}elseif($p->level == 7){
-					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$p->kode_perk;
-				}else{
-					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$p->kode_perk;
+				echo $p->kode_perk;
 				} ?></td>
 				<td><?php 
 				if($p->level == 1){
