@@ -1,10 +1,6 @@
 /**
  * DECLARATION
  */
-function tglTransStart(){
-	var tgltrans = 	$('#id_sessTgltrans').text();
-	$('#id_tgltrans').val(tgltrans.trim());
-}
 function readyToStart(){
 	$(".nomor").val("0.00");
 	$(".nomor").focusout(function(){

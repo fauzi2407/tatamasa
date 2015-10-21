@@ -568,7 +568,9 @@
 			}
         }
     }); 
-    
+    function cetak(){
+			window.open("<?php echo base_url('master_perkiraan/cetak'); ?>", '_blank');	
+	}
 </script>
 
 

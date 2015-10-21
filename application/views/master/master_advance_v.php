@@ -20,17 +20,6 @@
 					<a class="btn btn-icon-only btn-default btn-sm fullscreen" href="javascript:;" data-original-title="" title="">
 					</a>
 				</div>
-                
-                <!-- <div class="actions">
-                	<a href="javascript:;" class="btn blue btn-sm">
-						<i class="fa fa-print"></i> Cetak  </a>
-                </div> -->
-                <!-- <div class="tools">
-                    <a href="javascript:;" class="collapse">
-                    </a>
-                    <a href="javascript:;" class="fullscreen">
-                    </a>
-                </div> -->
             </div>
             <div class="portlet-body">
                 <div>
@@ -102,20 +91,11 @@
                                                    type="text" name="uangMuka"/>
                                 </div>
                                 <div class="form-group">
-                                	<div class="row">
-                                		<div class="col-md-6">
-                                		<label>Tanggal Pengajuan</label>
-                                			<input id="id_tgltrans" required="required" class="form-control "
-                                                   type="text" name="tglTrans" readonly/>
-                                		</div>
-                                		<div class="col-md-6">
-                                			<label>Tanggal Jatuh Tempo</label>
+                                    <label>Tanggal Jatuh Tempo</label>
                                             <input id="id_tglJT" required="required" class="form-control"
                                                    type="text" name="tglJT" placeholder="dd-mm-yyyy"/>
-                                		</div>
-                            			
-									</div>      
                                 </div>
+                                
                                 <div class="form-group">
                                     <label>Dibayarkan ke</label>
                                             <input id="id_payTo" required="required" class="form-control"
@@ -348,6 +328,45 @@
     </div>
 </div>
 
+<!-- END PAGE CONTENT-->
+<!--  MODAL Cetak Advance -->
+<div class="modal fade draggable-modal" id="idDivCetak" tabindex="-1" role="basic" aria-hidden="true">
+	<div class="modal-dialog  modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Cetak Advance</h4>
+			</div>
+			<div class="modal-body">
+					<div class="scroller" style="height:200px;">
+						<form class="" id="FormApprovalAdv" role="form" method="post" action="">
+                	    	<div class="form-group">
+								<label>Pilih Salah satu</label>
+									<div class="input-icon">
+										<i class="fa fa-list fa-fw"></i>
+										<select class="form-control" id="idAdv" name="idAdv" required="true">
+											<?php foreach($advance as $a){?>
+											<option value="<?php echo $a->id_advance; ?>">Approve</option>
+											<?php } ?>
+										</select>
+									</div>
+							</div>
+					</div><!-- END SCROLLER-->
+			</div>	
+			</form>	
+			<!-- END MODAL BODY-->
+			<div class="modal-footer">
+				<div class="form-group">
+					<button type="submit" id="btnSimpan" form="FormApprovalAdv" class="btn btn-info"><i class="fa fa-save"></i> Save</button>
+					<button type="button" class="btn default" data-dismiss="modal" id="btnCloseModalDataUser">Cancel</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- modal cetak -->
 <!-- END PAGE CONTENT-->
 <!--  MODAL Data Karyawan -->
 <div class="modal fade draggable-modal" id="idDivTabelKyw" tabindex="-1" role="basic" aria-hidden="true">
@@ -715,7 +734,6 @@
     //Ready Doc
     btnStart();
     readyToStart();
-    tglTransStart();
 	$("#id_namaKyw").focus();
     	
 	$( "#id_btnSimpan" ).click(function() {
@@ -733,7 +751,6 @@
 		startCheckBox();
 		resetForm();
 		readyToStart();
-		tglTransStart();
 	});
 	$( "#id_idAdvance" ).focusout(function() {
 		var idAdv	= $(this).val();
@@ -822,11 +839,6 @@
             } 
 	    });
 	});
-	function cetak(){
-		//window.location.href = 'http://www.google.com';
-		var idAdvance	= $('#id_idAdvance').val();
-		window.open("<?php echo base_url('master_advance/cetak/'); ?>/"+idAdvance, '_blank');
-	}
 	function getDescAdv(idAdv){
 		ajaxModal();
 		if (idAdv != '') {
@@ -839,7 +851,6 @@
 					$('#id_namaKyw').val(data.nama_kyw);
 					$('#id_deptKyw').val(data.nama_dept);
 					$('#id_uangMuka').val(data.jml_uang);
-					$('#id_tgltrans').val(data.tgl_trans);
 					$('#id_tglJT').val(data.tgl_jt);
 					$('#id_payTo').val(data.pay_to);
 					$('#id_namaPemilikAkunBank').val(data.nama_akun_bank);
@@ -973,7 +984,14 @@
 			}
         }
     }); 
-    
+    function cetak(){
+		var idAdvance = $('#id_idAdvance').val();
+		if(idAdvance == ''){
+			alert('Silahkan pilih ID Advance');
+		}else{
+			window.open("<?php echo base_url('master_advance/cetak/'); ?>/"+idAdvance, '_blank');	
+		}
+	}
 </script>
 
 

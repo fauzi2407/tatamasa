@@ -24,19 +24,18 @@ class Master_perkiraan_m extends CI_Model {
 	}
 	public function getDescAdv($idAdv)
 	{
-		$this->db->select ( 'ma.id_kyw, mk.nama_kyw, md.nama_dept, ma.jml_uang, ma.tgl_jt, ma.pay_to, ma.nama_akun_bank, ma.no_akun_bank, ma.nama_bank, ma.keterangan, ma.dok_po, ma.dok_sp, ma.dok_ssp, ma.dok_sspk, ma.dok_sbj, ma.app_keuangan_id, ma.app_hd_id, ma.app_gm_id, ma.app_keuangan_status, ma.app_hd_status, ma.app_gm_status, ma.app_keuangan_tgl, ma.app_hd_tgl, ma.app_gm_tgl, ma.app_keuangan_ket, ma.app_hd_ket, ma.app_gm_ket' );
+		$this->db->select('ma.id_kyw, mk.nama_kyw, md.nama_dept, ma.jml_uang, ma.tgl_jt, ma.pay_to, ma.nama_akun_bank, ma.no_akun_bank, ma.nama_bank, ma.keterangan, ma.dok_po, ma.dok_sp, ma.dok_ssp, ma.dok_sspk, ma.dok_sbj, ma.app_keuangan_id, ma.app_hd_id, ma.app_gm_id, ma.app_keuangan_status, ma.app_hd_status, ma.app_gm_status, ma.app_keuangan_tgl, ma.app_hd_tgl, ma.app_gm_tgl, ma.app_keuangan_ket, ma.app_hd_ket, ma.app_gm_ket' );
 		$this->db->from('master_advance ma');
 		$this->db->join('master_karyawan mk', 'ma.id_kyw=mk.id_kyw', 'LEFT');
 		$this->db->join('master_dept md', 'mk.dept_kyw=md.id_dept', 'LEFT');
-		$this->db->where ( 'ma.id_advance', $idAdv );
+		$this->db->where('ma.id_advance', $idAdv);
 //		$this->db->where ( 'T.STATUS_AKTIF <>', 3 );
-		$query = $this->db->get ();
+		$query = $this->db->get();
 		if($query->num_rows()== '1'){
 			return $query->result ();
 		}else{
 			return false;
 		}
-		
 	}
 	
 	public function insert($data){
@@ -114,18 +113,6 @@ class Master_perkiraan_m extends CI_Model {
 			$this->db->trans_commit();
 			return true;
 		}
-	}
-	function updatekodeinduk(){
-		//substr($kdPerk,0,-2);
-		$sql1 = "select kode_perk from perkiraan";
-		$query=$this->db->query($sql1);
-		foreach ($query->result() as $row){
-			$kdPerk = $row->kode_perk;
-			$kode_induk = substr($kdPerk,0,-2);
-			$sql="update perkiraan set kode_induk = '$kode_induk' where kode_perk ='$kdPerk'";
-			$this->db->query($sql);
-		}
-		
 	}
 	
 }
