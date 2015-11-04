@@ -147,8 +147,12 @@ class Master_advance_m extends CI_Model {
 		}
 	}
 	
-	function cetak_cpa(){
-		$sql="";
+	function cetak_cpa($idAdv){
+		$sql="select * from master_advance a 
+			  left join master_proyek b on a.id_proyek = b.id_proyek
+			  left join master_karyawan c on a.id_kyw = c.id_kyw
+			  left join master_dept d on c.dept_kyw = d.id_dept
+			  where a.id_advance = '".$idAdv."'";
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
