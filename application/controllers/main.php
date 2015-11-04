@@ -19,11 +19,12 @@ class Main extends CI_Controller {
 			$data ['multilevel'] = $this->user_m->get_data(0,$this->session->userdata('usergroup'));
 			//$data ['nama'] = $this->home_m->get_nama_kantor ();
 			$data['menu_id'] = 0;
-			$this->template->set('title','Microtech | Beranda');
-			$this->template->set('title','home');
-			$this->template->load('template/template1', 'master/index',$data );
+			$this->template->set ( 'title', 'Microtech | Beranda' );
+			$this->template->set ( 'title', 'Home' );
+			$this->template->load ( 'template/template1', 'master/index',$data );
 			//$this->load->view ( 'global/login_v' );
-			//$this->template->load ( 'template1', 'global/login_v',$data );			
+			//$this->template->load ( 'template1', 'global/login_v',$data );
+			
    		}
 	}
 	

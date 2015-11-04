@@ -10,6 +10,7 @@ class Master_perkiraan extends CI_Controller
 
 		$this->load->model('home_m');
 		$this->load->model('master_perkiraan_m');
+        $this->load->library('fpdf');
 		session_start ();
 	}
 	public function index(){
@@ -165,13 +166,13 @@ class Master_perkiraan extends CI_Controller
     		);
     	}else{
     		$cekTipeKodePerk = $this->master_perkiraan_m->cekTipeKodePerk( $kdPerk);
-    		if($cekTipeKodePerk == 'G'){
+    		if($cekTipeKodePerk[0]->type == 'G'){
     			$array = array(
     					'act'	=>0,
     					'tipePesan'=>'error',
     					'pesan' =>'Data gagal dihapus.<br/> Kode Perk induk tidak dapat dihapus .'
     			);
-    		}else{
+    		}else if($cekTipeKodePerk[0]->type == 'D'){
     			$model = $this->master_perkiraan_m->delete( $kdPerk);
     			
     			if($model){
@@ -196,22 +197,34 @@ class Master_perkiraan extends CI_Controller
     						'pesan' =>'Data gagal dihapus.'
     				);
     			}	
+    		}else{
+    		  $array = array(
+    						'act'	=>0,
+    						'tipePesan'=>'error',
+    						'pesan' =>'Data gagal dihapus.<br> Tipe kode perkiraan tidak ditemukan.'
+    				);
     		}
     			
-    	}
-    	
-    	
+    	}  	
     	$this->output->set_output(json_encode($array));
     }
-	
-	function cetak(){
+    function updatekodeinduk(){
+    	$this->master_perkiraan_m->updatekodeinduk();
+    }
+    function cetak(){
 		if($this->auth->is_logged_in() == false){
     		redirect('main/index');
     	}else{
-    		$data['perkiraan'] = $this->master_perkiraan_m->getAllPerkiraan();
-    		$this->load->view('cetak/cetak_perkiraan',$data);
+			define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+			$data['image1'] = base_url('metronic/img/tatamasa_logo.jpg');	
+			$data['nama'] = 'PT BERKAH GRAHA MANDIRI';
+			$data['tower'] = 'Beltway Office Park Tower Lt. 5';
+			$data['alamat'] = 'Jl. TB Simatung No. 41 - Pasar Minggu - Jakarta Selatan';
+			$data['laporan'] = 'Laporan Perkiraan';
+			$data['user'] = $this->session->userdata('username');
+			$data['all'] = $this->master_perkiraan_m->getAllPerkiraan();
+			$this->load->view('cetak/cetak_perkiraan_b',$data);
     	}
-
 	}
 }
 

@@ -87,12 +87,12 @@ class Approval_advance extends CI_Controller
         if($model){
         	$array = array(
         			'act'	=>1,
-        			'notif' =>'<div class="Metronic-alerts alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>Data Berhasil di Approve.</div>'
+        			'notif' =>'Data Berhasil di Approve.'
         	);
         }else{
         	$array = array(
         			'act'	=>0,
-        			'notif' =>'<div class="Metronic-alerts alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>User ini tidak diperbolehkan.</div>'
+        			'notif' =>'User ini tidak diperbolehkan.'
         	);
         }
         $this->output->set_output(json_encode($array));

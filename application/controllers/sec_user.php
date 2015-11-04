@@ -42,6 +42,7 @@ class Sec_user extends CI_Controller
 		}else{
 			$data['multilevel'] = $this->user_m->get_data(0,$this->session->userdata('usergroup'));
 			$data['menu_all'] = $this->user_m->get_menu_all(0);
+			$data['karyawan'] = $this->sec_user_m->getAllKaryawan();
 			
 			$this->template->set ( 'title', 'Konfigurasi User' );
 			$this->template->load ( 'template/template3', 'admin/sec_user_v',$data );
@@ -55,6 +56,7 @@ class Sec_user extends CI_Controller
 			$passwd = base64_decode($row->password);
 			$array = array(
 					'userid' => trim($row->userid),
+					'id_kyw' => trim($row->id_kyw),
 					'username' => trim($row->username),
 					'userfullname' =>  trim($row->userfullname),
 					'passwd'	=> $passwd,
@@ -67,12 +69,14 @@ class Sec_user extends CI_Controller
 	}
     function simpan(){
         $userName			= trim($this->input->post('userName'));
-        $userFullName		= trim($this->input->post('userNameFull'));
+		$idKyw				= trim($this->input->post('karyawan'));		
+        $userFullName		= $this->sec_user_m->getNamaKaryawan($idKyw);
         $password			= base64_encode(trim($this->input->post('kataKunci')));
         $groupUser			= trim($this->input->post('userGroup'));
        
         $data = array(
             'userid'		      		=>'0',
+			'id_kyw'		      		=>$idKyw,
             'username'		        	=>$userName,
             'userfullname'		        =>$userFullName,
             'password'		        	=>$password,
@@ -95,20 +99,22 @@ class Sec_user extends CI_Controller
         $this->output->set_output(json_encode($array));
     }
     function ubah(){
-    	$userId			= trim($this->input->post('userId'));
     	$userName			= trim($this->input->post('userName'));
-    	$userFullName		= trim($this->input->post('userNameFull'));
-    	$password			= base64_encode(trim($this->input->post('kataKunci')));
-    	$groupUser			= trim($this->input->post('userGroup'));
-    	 
-    	$data = array(
-    			'username'		        	=>$userName,
-    			'userfullname'		        =>$userFullName,
-    			'password'		        	=>$password,
-    			'status_password'		    =>0,
-    			'tgl_password'		    	=>'1970-01-01',
-    			'usergroup'					=>$groupUser
-    	);
+		$idKyw				= trim($this->input->post('karyawan'));		
+        $userFullName		= $this->sec_user_m->getNamaKaryawan($idKyw);
+        $password			= base64_encode(trim($this->input->post('kataKunci')));
+        $groupUser			= trim($this->input->post('userGroup'));
+       
+        $data = array(
+            'userid'		      		=>'0',
+			'id_kyw'		      		=>$idKyw,
+            'username'		        	=>$userName,
+            'userfullname'		        =>$userFullName,
+            'password'		        	=>$password,
+            'status_password'		    =>0,
+            'tgl_password'		    	=>'1970-01-01',
+        	'usergroup'					=>$groupUser
+        );
     	
     	$model = $this->sec_user_m->updateUser($data,$userId);
     	if($model){

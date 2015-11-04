@@ -28,6 +28,7 @@ class Auth{
          $userdata = $result->row();
          $session_data = array(
             'id_user'   		=> $userdata->userid,
+			'id_kyw'   		=> $userdata->id_kyw,
             'namaInisial'      => $userdata->username,
 			'namaFull'      	=> $userdata->userfullname,
             'usergroup'     	=> $userdata->usergroup,
@@ -55,11 +56,33 @@ class Auth{
          		'dataTables-bootstrapJS'  => '<script src="'.base_url('metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js').'"></script>',
          		'metronicJS'  => '<script src="'.base_url('metronic/global/scripts/metronic.js').'"></script>',
          		'layoutJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/layout.js').'"></script>',
-         		'demoJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/demo.js').'"></script>'
+         		'demoJS'  => '<script src="'.base_url('metronic/admin/layout4/scripts/demo.js').'"></script>',
+				'select2JS'  => '<script src="'.base_url('metronic/global/plugins/select2/select2.min.js').'"></script>',
+                //'compPickersJS'  => '<script src="'.base_url('metronic/admin/pages/scripts/components-pickers.js').'"></script>'
+         		
          		/* 'JS'  => '<script src="'.base_url('').'"></script>' */
          );
          
          $this->CI->session->set_userdata($sesJS);
+         
+         $sesCS = array(
+         		'fontAwesomeCS'  => '<link href="'.base_url('metronic/global/plugins/font-awesome/css/font-awesome.min.css').'" rel="stylesheet" type="text/css">',
+         		'simpleLineIconsCS'  => '<link href="'.base_url('metronic/global/plugins/simple-line-icons/simple-line-icons.min.css').'" rel="stylesheet" type="text/css">',
+         		'bootstrapCS'  => '<link href="'.base_url('metronic/global/plugins/bootstrap/css/bootstrap.min.css').'" rel="stylesheet" type="text/css">',
+         		'uniformDefaultCS'  => '<link href="'.base_url('metronic/global/plugins/uniform/css/uniform.default.css').'" rel="stylesheet" type="text/css">',
+         		'bootstrapSwitchCS'  => '<link href="'.base_url('metronic/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css').'" rel="stylesheet" type="text/css">',
+         		'select2CS'  => '<link href="'.base_url('metronic/global/plugins/select2/select2.css').'" rel="stylesheet" type="text/css">',
+         		'datepicker3CS'  => '<link href="'.base_url('metronic/global/plugins/bootstrap-datepicker/css/datepicker3.css').'" rel="stylesheet" type="text/css">',
+         		'dataTablesCS'  => '<link href="'.base_url('metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css').'" rel="stylesheet" type="text/css">',
+         		'toastrCS'  => '<link href="'.base_url('metronic/global/plugins/bootstrap-toastr/toastr.min.css').'" rel="stylesheet" type="text/css">',
+         		'componentsRoundedCS'  => '<link href="'.base_url('metronic/global/css/components-rounded.css').'" rel="stylesheet" type="text/css">',
+         		'pluginsCS'  => '<link href="'.base_url('metronic/global/css/plugins.css').'" rel="stylesheet" type="text/css">',
+         		'layoutCS'  => '<link href="'.base_url('metronic/admin/layout4/css/layout.css').'" rel="stylesheet" type="text/css">',
+         		'lightCS'  => '<link href="'.base_url('metronic/admin/layout4/css/themes/light.css').'" rel="stylesheet" type="text/css">',
+         		'customCS'  => '<link href="'.base_url('metronic/admin/layout4/css/custom.css').'" rel="stylesheet" type="text/css">'
+         		
+         );
+         $this->CI->session->set_userdata($sesCS);
          return true;
       }
    }

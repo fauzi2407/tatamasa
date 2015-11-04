@@ -16,11 +16,13 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
+<?php echo  $this->session->userdata('fontAwesomeCS'); ?>
+
 <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">-->
-<link href="<?php echo base_url('metronic/global/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
-<link href="<?php echo base_url('metronic/global/plugins/simple-line-icons/simple-line-icons.min.css'); ?>" rel="stylesheet" type="text/css">
-<link href="<?php echo base_url('metronic/global/plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
-<link href="<?php echo base_url('metronic/global/plugins/uniform/css/uniform.default.css'); ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url('metronic/global/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url('metronic/global/plugins/simple-line-icons/simple-line-icons.min.css'); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url('metronic/global/plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url('metronic/global/plugins/uniform/css/uniform.default.css'); ?>" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url('metronic/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css'); ?>" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
@@ -58,6 +60,13 @@
 .nomor {
     text-align: right;
 }
+.nomor1 {
+    text-align: right;
+}
+.kanan {
+    text-align: right;
+}
+
 </style>
 </head>
 <!-- END HEAD -->

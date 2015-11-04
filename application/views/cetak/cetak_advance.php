@@ -84,13 +84,13 @@
   </head>
   <body>
 	<table class="judul">
-		<tr><th></th><th>PT BERKAH GRAHA MANDIRI</th><tr>
-		<tr><td rowspan="3"><img id="logo" src="<?php echo base_url('metronic/img/tatamasa_logo.png'); ?>"></td><td>Beltway Office Park Tower Lt. 5</td></tr>
+		<tr><th></th><th>PT BERKAH GRAHA MANDIRI</th></tr>
+		<tr><td rowspan="2"><img id="logo" src="<?php echo base_url('metronic/img/tatamasa_logo.png'); ?>"></td><td>Beltway Office Park Tower Lt. 5</td></tr>
 		<tr><td>Jl. TB Simatung No. 41 - Psr Minggu - Jakarta Selatan</td></tr>
 	</table>
-	</br>
+	<br/>
 	<table class="tableizer-table">
-	<tr class="tableizer-firstrow"><th colspan="14">REQUEST FOR PAYMENT</th></tr>
+	<tr class="tableizer-firstrow"><th colspan="14">REQUEST ADVANCE</th></tr>
 	</table>
 	<?php foreach($advance as $a){ ?>
 	<table class="tableizer-table2">
