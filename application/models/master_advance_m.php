@@ -147,6 +147,12 @@ class Master_advance_m extends CI_Model {
 		}
 	}
 	
+	function cetak_cpa(){
+		$sql="";
+		$query=$this->db->query($sql);
+		return $query->result(); // returning rows, not row
+	}
+	
 }
 
 /* End of file sec_menu_user_m.php */
