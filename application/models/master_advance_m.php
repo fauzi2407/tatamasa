@@ -156,7 +156,11 @@ class Master_advance_m extends CI_Model {
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
-	
+	function cetak_cpa_detail($idAdv){
+		$sql="select * from cpa a left join perkiraan b on a.kode_perk=b.id_perk where a.id_master = '".$idAdv."'";
+		$query=$this->db->query($sql);
+		return $query->result(); // returning rows, not row
+	}
 }
 
 /* End of file sec_menu_user_m.php */
