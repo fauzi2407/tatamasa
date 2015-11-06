@@ -7,6 +7,13 @@ function tglTransStart(){
 }
 function readyToStart(){
 	$(".nomor").val("0.00");
+    $(".nomor").focus(function(){
+	    if ($(this).val() == '0.00') {
+	        $(this).val('');
+	    }else{
+	        this.select();
+	    }
+	});
 	$(".nomor").focusout(function(){
 	    if ($(this).val() == '') {
 	        $(this).val('0.00');
@@ -15,8 +22,36 @@ function readyToStart(){
 	        $(this).val(number_format(angka,2));
 	    }
 	});
-
+    $(".nomor").keyup(function(){
+        var val = $(this).val();
+        if(isNaN(val)){
+            val = val.replace(/[^0-9\.]/g,'');
+            if(val.split('.').length>2)
+                val =val.replace(/\.+$/,"");
+            }
+        $(this).val(val);
+	    
+	});
+    
 	$(".nomor1").val("0");
+    $(".nomor1").focusout(function(){
+        var val = $(this).val();
+	    if ($(this).val() == '') {
+	        $(this).val('0');
+	    }else{
+	        $(this).val(val);
+	    }
+	});
+    $(".nomor1").keyup(function(){
+        var val = $(this).val();
+        if(isNaN(val)){
+            val = val.replace(/[^0-9\.]/g,'');
+            if(val.split('.').length>2)
+                val =val.replace(/\.+$/,"");
+            }
+        $(this).val(val);
+        
+    });
 }
 function startCheckBox(){
 	$(".checker span").removeClass("checked");
@@ -24,6 +59,7 @@ function startCheckBox(){
 function resetForm(){
 	$( "form input:text" ).val('');
 	$( "form textarea" ).val('');
+    $( "form select" ).val('');
 }
 /**
  * FUNCTION
@@ -33,6 +69,7 @@ function btnStart(){
 	$('#id_btnUbah').attr("disabled",true);
     $('#id_btnHapus').attr("disabled",true);
 }
+
 function ajaxModal(){
 	$(document).ajaxStart(function () {
         $('.modal_json').fadeIn('fast');
@@ -40,6 +77,10 @@ function ajaxModal(){
         $('.modal_json').fadeOut('fast');
     });
 }
+function CleanNumber(value) {
+        newValue = value.replace(/\,/g, '');
+        return newValue;
+    }
 var UIToastr = function () {
     return {
         //main function to initiate the module

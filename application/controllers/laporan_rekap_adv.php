@@ -115,7 +115,6 @@ class Laporan_rekap_adv extends CI_Controller
 		$data ['field'] = array('No','Nama Karyawan','Departemen','Keterangan','Request','Jatuh Tempo','Total Request','Belum Dibayar');
 		$this->load->view('cetak/cetak_laporan_rekap_adv_excel',$data);
 	}
-	
 }
 
 /* End of file sec_user.php */

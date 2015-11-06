@@ -150,28 +150,17 @@ class Master_advance extends CI_Controller
     function getDescCpa(){
 		$this->CI =& get_instance();
 		$idAdv = $this->input->post ( 'idAdv', TRUE );
-		$rows = $this->master_advance_m->getDescCpa( $idAdv );
-		if($rows){
-			foreach ( $rows as $row )
-				
-				$jumlah = number_format($row->jumlah,2);
-				$array = array (
-						'baris'=>1,
-						'id_cpa'    =>$row->id_cpa,
-                        'id_master'=>$row->id_master,
-                        'kode_perk'=>$row->kode_perk,
-                        'kode_cflow'=>$row->kode_cflow,
-                        'keterangan'=>$row->keterangan,
-                        'jumlah'=>$jumlah
-						//'' => $row->
-                        
-						
-				);
-		}else{
-			$array=array('baris'=>0);
-		}
-	
-		$this->output->set_output(json_encode($array));
+		$crows = $this->master_advance_m->getCDescCpa( $idAdv );
+        if($crows<=0){
+            $array=array('baris'=>0);
+            $rows['data_cpa'] = $array;
+            $this->output->set_output(json_encode($rows));
+        }else{
+            $rows = $this->master_advance_m->getDescCpa( $idAdv );    
+            $this->output->set_output(json_encode($rows));				
+        }
+        
+		
 	}
 	
     function simpan(){
@@ -312,6 +301,36 @@ class Master_advance extends CI_Controller
     			//        		''		        	=>$,
     	);
     	$model = $this->master_advance_m->updateAdv($data,$idAdv);
+        
+        $totJurnal  = trim($this->input->post('txtTempLoop'));
+        if($totJurnal > 0){
+            $query=$this->master_advance_m->deleteCpa($idAdv);
+            
+            for($i=1;$i<=$totJurnal;$i++){
+                $tKodePerk          = 'tempKodePerk'.$i;
+                $tKodeCflow         = 'tempKodeCflow'.$i;
+                $tJumlah            = 'tempJumlah'.$i;
+                $tKet               = 'tempKet'.$i;
+            
+                $tmpKodePerk        = trim($this->input->post($tKodePerk ));
+                $tmpKodeCflow       = trim($this->input->post($tKodeCflow ));
+                $tmpJumlah          = str_replace(',', '', trim($this->input->post($tJumlah )));
+                $tmpKet             = trim($this->input->post($tKet ));
+
+                $data = array(
+                    'id_cpa'         => 0,
+                    'id_master'      => $idAdv,
+                    'kode_perk'      => $tmpKodePerk,
+                    'kode_cflow'     => $tmpKodeCflow,
+                    'keterangan'     => $tmpKet,
+                    'jumlah'        => $tmpJumlah
+                );
+                $query=$this->master_advance_m->insertCpa($data);
+            }   
+        }else{
+            $query=$this->master_advance_m->deleteCpa($idAdv);
+        }
+        
     	if($model){
     		$array = array(
     			'act'	=>1,
@@ -330,7 +349,14 @@ class Master_advance extends CI_Controller
     function hapus(){
     	$this->CI =& get_instance();
     	$idAdvance			= trim($this->input->post('idAdvance'));
+        $totJurnal  = trim($this->input->post('tempLoop'));
     	$model = $this->master_advance_m->deleteAdv( $idAdvance);
+        
+        
+        if($totJurnal > 0){
+            $query=$this->master_advance_m->deleteCpa($idAdvance);
+        }
+        
     	if($model){
     		$array = array(
     			'act'	=>1,
@@ -355,26 +381,26 @@ class Master_advance extends CI_Controller
     		$this->load->view('cetak/cetak_advance',$data);
     	}
     }
+    function cetak_cpa($idAdv){
+        if($this->auth->is_logged_in() == false){
+            redirect('main/index');
+        }else{
+            $data['advance'] = $this->master_advance_m->cetak_cpa($idAdv);
+            $data['detail'] = $this->master_advance_m->cetak_cpa_detail($idAdv);
+            $this->load->view('cetak/cetak_cpa',$data);
+        }
+    }
+
+    function cetak_pp($idAdv){
+        if($this->auth->is_logged_in() == false){
+            redirect('main/index');
+        }else{
+            $data['advance'] = $this->master_advance_m->cetak_cpa($idAdv);
+            $data['detail'] = $this->master_advance_m->cetak_cpa_detail($idAdv);
+            $this->load->view('cetak/cetak_cpa',$data);
+        }
+    }
 	
-	function cetak_cpa($idAdv){
-		if($this->auth->is_logged_in() == false){
-    		redirect('main/index');
-    	}else{
-			$data['advance'] = $this->master_advance_m->cetak_cpa($idAdv);
-			$data['detail'] = $this->master_advance_m->cetak_cpa_detail($idAdv);		
-			$this->load->view('cetak/cetak_cpa',$data);
-		}	
-	}
-	
-	function cetak_pp($idAdv){
-		if($this->auth->is_logged_in() == false){
-    		redirect('main/index');
-    	}else{
-			$data['advance'] = $this->master_advance_m->cetak_cpa($idAdv);
-			$data['detail'] = $this->master_advance_m->cetak_cpa_detail($idAdv);		
-			$this->load->view('cetak/cetak_cpa',$data);
-		}	
-	}
 
 }
 

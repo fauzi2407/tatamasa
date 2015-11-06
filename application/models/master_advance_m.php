@@ -61,21 +61,42 @@ class Master_advance_m extends CI_Model {
 			return false;
 		}	
 	}
+    public function getCDescCpa($idAdv)
+	{
+		$this->db->select ( 'id_cpa,id_master,kode_perk,kode_cflow,keterangan,jumlah' );
+		$this->db->from('cpa');
+		$this->db->where ( 'id_master', $idAdv );
+//		
+		$query = $this->db->get ();
+		return $query->num_rows();	
+	}
+    
     public function getDescCpa($idAdv)
 	{
-		$this->db->select ( 'ma.id_advance' );
-		$this->db->from('master_advance ma');
-		$this->db->join('cpa cp', 'ma.id_advance=cp.id_master', 'LEFT');
-		$this->db->where ( 'ma.id_advance', $idAdv );
+		$this->db->select ( 'id_cpa,id_master,kode_perk,kode_cflow,keterangan,jumlah' );
+		$this->db->from('cpa');
+		$this->db->where ( 'id_master', $idAdv );
 //		$this->db->where ( 'T.STATUS_AKTIF <>', 3 );
 		$query = $this->db->get ();
-		if($query->num_rows()> '1'){
-			return $query->result ();
-            
-		}else{
-			return false;
-		}	
+		
+        $rows['data_cpa'] = $query->result();
+		return $rows;
+        	
 	}
+    function deleteCpa($IdAdv){
+		$this->db->trans_begin();
+		$query1	=	$this->db->where('id_master',$IdAdv);
+		$query2	=   $this->db->delete('cpa');
+		if ($this->db->trans_status() === FALSE){
+			$this->db->trans_rollback();
+			return false;
+		}
+		else{
+			$this->db->trans_commit();
+			return true;
+		}
+	}
+    
 	public function getIdAdv($bulan,$tahun){
 		$sql= "select id_advance from master_advance where MONTH(tgl_trans)='$bulan' and YEAR(tgl_trans)='$tahun'";
 		$query = $this->db->query($sql);
@@ -146,8 +167,7 @@ class Master_advance_m extends CI_Model {
 			return true;
 		}
 	}
-	
-	function cetak_cpa($idAdv){
+    function cetak_cpa($idAdv){
 		$sql="select a.*,b.nama_proyek,c.nama_kyw,d.nama_dept, 
 			(select e.userfullname from sec_passwd e where e.userid = a.app_keuangan_id) as financeName,
 			(select e.userfullname from sec_passwd e where e.userid = a.app_hd_id) as hdName,
@@ -186,6 +206,7 @@ class Master_advance_m extends CI_Model {
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
+	
 }
 
 /* End of file sec_menu_user_m.php */
