@@ -356,6 +356,25 @@ class Master_advance extends CI_Controller
     	}
     }
 	
+	function cetak_cpa($idAdv){
+		if($this->auth->is_logged_in() == false){
+    		redirect('main/index');
+    	}else{
+			$data['advance'] = $this->master_advance_m->cetak_cpa($idAdv);
+			$data['detail'] = $this->master_advance_m->cetak_cpa_detail($idAdv);		
+			$this->load->view('cetak/cetak_cpa',$data);
+		}	
+	}
+	
+	function cetak_pp($idAdv){
+		if($this->auth->is_logged_in() == false){
+    		redirect('main/index');
+    	}else{
+			$data['advance'] = $this->master_advance_m->cetak_cpa($idAdv);
+			$data['detail'] = $this->master_advance_m->cetak_cpa_detail($idAdv);		
+			$this->load->view('cetak/cetak_cpa',$data);
+		}	
+	}
 
 }
 

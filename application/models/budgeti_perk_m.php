@@ -13,11 +13,19 @@ class Budgeti_perk_m extends CI_Model {
 		}
 		return $rows; // returning rows, not row
 	}
-	public function getBudgetPerk($tahun)
+	function getBudgetPerk($tahun)
 	{
 		$sql="SELECT b.*,p.nama_perk,p.level from budget_perkiraan b left join perkiraan p on b.kode_perk = p.kode_perk where b.tahun = '$tahun'";
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
+	}
+	
+	function getNamaProyek($tahun)
+	{
+		$sql="select distinct b.nama_proyek from budget_perkiraan a left join master_proyek b on a.id_proyek = b.id_proyek where a.tahun = '$tahun'";
+		$query=$this->db->query($sql);
+		$hasil = $query->result(); // returning rows, not row
+		return $hasil[0]->nama_proyek;
 	}
 	
 	function update($data,$kode_perk){

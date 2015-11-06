@@ -14,7 +14,7 @@ $this->fpdf->Ln();
 $this->fpdf->Cell(19.3,0.4,$alamat,0,0,'R');
 $this->fpdf->Ln();
 $this->fpdf->SetFont('Times','',12);
-$this->fpdf->Cell(16.5,1.3,$laporan,0,0,'R');
+$this->fpdf->Cell(28.5,1.3,$laporan,0,0,'C');
 $this->fpdf->Ln();
 /* Fungsi Line untuk membuat garis */
 $this->fpdf->Line(0.5,3.15,29.5,3.15);

@@ -148,16 +148,41 @@ class Master_advance_m extends CI_Model {
 	}
 	
 	function cetak_cpa($idAdv){
-		$sql="select * from master_advance a 
-			  left join master_proyek b on a.id_proyek = b.id_proyek
-			  left join master_karyawan c on a.id_kyw = c.id_kyw
-			  left join master_dept d on c.dept_kyw = d.id_dept
-			  where a.id_advance = '".$idAdv."'";
+		$sql="select a.*,b.nama_proyek,c.nama_kyw,d.nama_dept, 
+			(select e.userfullname from sec_passwd e where e.userid = a.app_keuangan_id) as financeName,
+			(select e.userfullname from sec_passwd e where e.userid = a.app_hd_id) as hdName,
+			(select e.userfullname from sec_passwd e where e.userid = a.app_gm_id) as gmName,
+			(
+			CASE 
+			 WHEN app_keuangan_status = '1' THEN 'Approve'
+			 WHEN app_keuangan_status = '2' THEN 'Reject'
+			 WHEN app_keuangan_status = '3' THEN 'Paid'
+			END) AS statusKeuangan,
+			(
+			CASE 
+			 WHEN app_hd_status = '1' THEN 'Approve'
+			 WHEN app_hd_status = '2' THEN 'Reject'
+			 WHEN app_hd_status = '3' THEN 'Paid'
+			END) AS statusHd,
+			(
+			CASE 
+			 WHEN app_gm_status = '1' THEN 'Approve'
+			 WHEN app_gm_status = '2' THEN 'Reject'
+			 WHEN app_gm_status = '3' THEN 'Paid'
+			END) AS statusGm 
+			from master_advance a 
+			left join master_proyek b on a.id_proyek = b.id_proyek
+			left join master_karyawan c on a.id_kyw = c.id_kyw
+			left join master_dept d on c.dept_kyw = d.id_dept
+			where a.id_advance = '".$idAdv."'";
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}
 	function cetak_cpa_detail($idAdv){
-		$sql="select * from cpa a left join perkiraan b on a.kode_perk=b.id_perk where a.id_master = '".$idAdv."'";
+		$sql="select a.*,b.nama_perk, c.tahun,c.id_proyek,c.kode_perk, 
+			  (c.jan+c.feb+c.mar+c.apr+c.mei+c.jun+c.jul+c.agu+c.sep+c.okt+c.nov+c.des) as anggaran,c.terpakai,c.sisa from cpa a 
+			  left join perkiraan b on a.kode_perk=b.kode_perk 
+			  left join budget_perkiraan c on a.kode_perk=c.kode_perk where a.id_master = '".$idAdv."'";
 		$query=$this->db->query($sql);
 		return $query->result(); // returning rows, not row
 	}

@@ -109,7 +109,8 @@ class Budgeti_perk extends CI_Controller
 			$data['nama'] = 'PT BERKAH GRAHA MANDIRI';
 			$data['tower'] = 'Beltway Office Park Tower Lt. 5';
 			$data['alamat'] = 'Jl. TB Simatung No. 41 - Pasar Minggu - Jakarta Selatan';
-			$data['laporan'] = 'Laporan Budget Perkiraan';
+			$proyek = $this->budgeti_perk_m->getNamaProyek($tahun);
+			$data['laporan'] = 'Laporan Budget Perkiraan - '.$proyek;
 			$data['user'] = $this->session->userdata('username');
 			$data['all'] = $this->budgeti_perk_m->getBudgetPerk($tahun);
 			$this->load->view('cetak/cetak_budget_perkiraan',$data);

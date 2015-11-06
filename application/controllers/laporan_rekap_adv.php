@@ -116,9 +116,6 @@ class Laporan_rekap_adv extends CI_Controller
 		$this->load->view('cetak/cetak_laporan_rekap_adv_excel',$data);
 	}
 	
-	function perintah_pembayaran(){
-		$this->load->view('cetak/cetak_perintah_pembayaran_advance');
-	}
 }
 
 /* End of file sec_user.php */

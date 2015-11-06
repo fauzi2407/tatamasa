@@ -79,41 +79,63 @@
 	<tr class="tableizer-firstrow"><th colspan="14">CATATAN PENGGUNAAN ANGGARAN (CPA)</th></tr>
 	</table>
 	<br/>
+	<?php 
+		foreach($advance as $a){
+	?>
 	<table class="tableizer-table3">
 	 <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Request Detail</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Project</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">No.Request</td><td width="3%" align="left">:</td><td width="15%" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td>
-	 <td>&nbsp;</td><td width="7%" align="left">Tgl Req</td><td width="3%" align="left">:</td><td width="15%" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Request Detail</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">ADVANCE REQUEST FOR PAYMENT</td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Project</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->nama_proyek; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">No.Request</td><td width="3%" align="left">:</td><td width="15%" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->id_advance; ?></td>
+	 <td>&nbsp;</td><td width="7%" align="left">Tgl Req</td><td width="3%" align="left">:</td><td width="15%" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo tgl_indo($a->tgl_trans); ?></td>
 	 <td>&nbsp;</td><td width="10%" align="left">Req.Adv No</td><td width="3%" align="left">:</td><td width="15%" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>	 
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Request Name/Dept</td><td width="3%" align="left">:</td><td colspan="5" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td>
-	 <td width="2%" align="left">/</td><td width="15%" colspan="3" align="left" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Request Name/Dept</td><td width="3%" align="left">:</td><td colspan="5" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->nama_kyw; ?></td>
+	 <td width="2%" align="left">/</td><td width="15%" colspan="3" align="left" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->nama_dept; ?></td><td>&nbsp;</td></tr>
 	 <tr><td>&nbsp;</td><td width="15%" align="left">Invoice No</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%" align="left">Due Date</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
+	 <td width="15%" align="left">Due Date</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->tgl_jt; ?></td><td>&nbsp;</td></tr>
 	 <tr><td>&nbsp;</td><td width="15%" align="left">PO No</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%" align="left">Pay to</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Amount</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%" align="left">Account Name</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Paid Ammount</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%" align="left">Account No</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Over(Under)Paid</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%" align="left">Bank</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Description</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Vrf by Finance Dept</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">Dept Head Approval</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td>
-	 <td width="2%" align="Center">/</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%">Apr Date</td><td width="2%" align="Center">:</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td>&nbsp;</td><td width="15%" align="left">GM Internal Approval</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td>
-	 <td width="2%" align="Center">/</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td>
-	 <td width="15%">Apr Date</td><td width="2%" align="Center">:</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">&nbsp;</td><td>&nbsp;</td></tr>
+	 <td width="15%" align="left">Pay to</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->pay_to; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Amount</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->jml_uang; ?></td><td>&nbsp;</td>
+	 <td width="15%" align="left">Account Name</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->nama_akun_bank; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Paid Ammount</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">Rp. 0.00</td><td>&nbsp;</td>
+	 <td width="15%" align="left">Account No</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->no_akun_bank; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Over(Under)Paid</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;">Rp. 0.00</td><td>&nbsp;</td>
+	 <td width="15%" align="left">Bank</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->nama_bank; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Description</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->keterangan; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Vrf by Finance Dept</td><td width="3%" align="left">:</td><td colspan="9" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->financeName; ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">Dept Head Approval</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->hdName; ?></td>
+	 <td width="2%" align="Center">/</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->statusKeuangan; ?></td><td>&nbsp;</td>
+	 <td width="15%">Apr Date</td><td width="2%" align="Center">:</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php if($a->app_hd_tgl = ''){ echo '';}else{ echo tgl_indo($a->app_hd_tgl);} ?></td><td>&nbsp;</td></tr>
+	 <tr><td>&nbsp;</td><td width="15%" align="left">GM Internal Approval</td><td width="3%" align="left">:</td><td colspan="3" style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->gmName; ?></td>
+	 <td width="2%" align="Center">/</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php echo $a->statusGm; ?></td><td>&nbsp;</td>
+	 <td width="15%">Apr Date</td><td width="2%" align="Center">:</td><td style="border-bottom: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;"><?php if($a->app_gm_tgl == '0000-00-00'){ echo '';}else{ echo tgl_indo($a->app_gm_tgl);} ?></td><td>&nbsp;</td></tr>
 	 <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
 	</table>
+		<?php 
+		}
+		?>
 	<table class="tableizer-table2">
 	 <tr><th width="10%">CF/No.Rek</th><th width="50%">Nama CF/Keterangan</th><th width="10%">Anggaran</th><th width="10%">Terpakai</th><th width="10%">Jm.Request</th><th width="10%">Sisa</th></tr>
-	 <tr><td rowspan="2">&nbsp;</td><td style="border-bottom: 0px;">&nbsp;</td><td rowspan="2">&nbsp;</td><td rowspan="2">&nbsp;</td><td rowspan="2">&nbsp;</td><td rowspan="2">&nbsp;</td></tr>
-	 <tr><td style="border-top: 0px;">&nbsp;</td></tr>
-	 <tr><td colspan="2">Total Request</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-	 <tr><td colspan="6">&nbsp;</td></tr>
+	 <?php 
+	 $totalAng = 0;
+	 $totalTer = 0;
+	 $totalJum = 0;
+	 $totalSisa = 0;
+	 foreach($detail as $d){
+	 ?>
+	 <tr><td rowspan="2"><?php echo $d->kode_perk; ?></td><td style="border-bottom: 0px;"><?php echo $d->nama_perk; ?></td><td rowspan="2"><?php echo number_format($d->anggaran,2,",","."); ?></td>
+	 <td rowspan="2"><?php echo number_format($d->terpakai,2,",","."); ?></td><td rowspan="2"><?php echo number_format($d->jumlah,2,",","."); ?></td>
+	 <td rowspan="2"><?php echo number_format($d->sisa,2,",","."); ?></td></tr>
+	 <tr><td style="border-top: 0px;"><?php echo $d->keterangan; ?></td></tr>
+	 <?php 
+	 $totalAng = $totalAng + $d->anggaran;
+	 $totalTer = $totalTer + $d->terpakai;
+	 $totalJum = $totalJum + $d->jumlah;
+	 $totalSisa = $totalSisa + $d->sisa;
+	 } ?>
+	 <tr><td colspan="2">Total Request</td><td><?php echo number_format($totalAng,2,",","."); ?></td><td><?php echo number_format($totalTer,2,",","."); ?></td>
+	 <td><?php echo number_format($totalJum,2,",","."); ?></td><td><?php echo number_format($totalSisa,2,",","."); ?></td></tr>
+	 <tr><td colspan="6"><?php echo if (Terbilang($totalSisa) == ''){ echo '';}else{ echo Terbilang($totalSisa).' rupiah';} ?></td></tr>
 	</table>
 	<br/>
 	<table class="tableizer-table4">
@@ -121,7 +143,7 @@
 	 <tr><td style="border-bottom: 0px;">&nbsp;</td></tr>
 	 <tr><td style="border-bottom: 0px;border-top: 0px;">&nbsp;</td></tr>
 	 <tr><td style="border-top: 0px;">&nbsp;</td></tr>
-	 <tr><td>TGL : </td></tr>
+	 <tr><td>TGL : <?php echo tgl_indo(date('Y-m-d'));?></td></tr>
 	</table>
   </body>
 </html>
@@ -151,5 +173,25 @@ window.print();
 			case 11: return "November"; break;
 			case 12: return "Desember"; break;
 		}
+	}
+	function Terbilang($x)
+	{
+	  $abil = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+	  if ($x < 12)
+		return " " . $abil[$x];
+	  elseif ($x < 20)
+		return $this->Terbilang($x - 10) . "belas";
+	  elseif ($x < 100)
+		return $this->Terbilang($x / 10) . " puluh" . $this->Terbilang($x % 10);
+	  elseif ($x < 200)
+		return " seratus" . $this->Terbilang($x - 100);
+	  elseif ($x < 1000)
+		return $this->Terbilang($x / 100) . " ratus" . $this->Terbilang($x % 100);
+	  elseif ($x < 2000)
+		return " seribu" . $this->Terbilang($x - 1000);
+	  elseif ($x < 1000000)
+		return $this->Terbilang($x / 1000) . " ribu" . $this->Terbilang($x % 1000);
+	  elseif ($x < 1000000000)
+		return $this->Terbilang($x / 1000000) . " juta" . $this->Terbilang($x % 1000000);
 	}
 ?>
